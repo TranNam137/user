@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Thanh Thuy",
+        "tel": "0953447765",
+        "premission": 1
+    },
+    {
+        "id": 2,
+        "name": "Tran Nam",
+        "tel": "0953547765",
+        "premission": 2
+    },
+    {
+        "id": 3,
+        "name": "Thanh Thuy",
+        "tel": "0953447765",
+        "premission": 3
+    },
+    {
+        "id": 4,
+        "name": "Thanh Thuy",
+        "tel": "0953447765",
+        "premission": 1
+    },
+    {
+        "id": 5,
+        "name": "Thanh Thuy",
+        "tel": "0953447765",
+        "premission": 1
+    }
+]
