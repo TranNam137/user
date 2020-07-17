@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
+import EditUser from './EditUser';
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tempValue : ''
+            tempValue : '',
+            userObj : {}
         }
     }
+
+    getUserEditInfo = (info) =>{
+        this.setState({
+            userObj:info
+        });
+        this.props.getUserEditInfoApp(info);
+        
+    }
+    isShowEditForm = () =>{
+        if(this.props.editUserStatus === true){
+            return <EditUser
+            getUserEditInfo = {(info) => this.getUserEditInfo(info)}
+            userEditobject = {this.props.userEditobject}
+             changeEditUserStatus = {() => this.props.changeEditUserStatus()}/>
+            
+        }
+    }
+
     isChange = (event) =>{
         console.log(event.target.value);
         this.setState({
@@ -24,10 +44,10 @@ class Search extends Component {
         }
     }
 
-
     render() {
         return (
             <div className="col-12">
+                {this.isShowEditForm()}
                 <div className="form-group">
                 <div className="btn btn-group" style={{maxWidth: '510px', width: '60%'}}>
                     <input type="text" className="form-control" placeholder="Nhập từ khóa" onChange = {(event) => this.isChange(event)} />

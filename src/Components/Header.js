@@ -6,8 +6,7 @@ class Header extends Component {
       <div>
         <div className="jumbotron jumbotron-fluid">
           <div className="container text-center">
-            <h2 className="display-4">Quản lý User bằng React js</h2>
-            <p className="lead">với dữ liệu Json</p>
+            <h2 className="display-4">Quản lý User - ReactJs</h2>
             <hr />
           </div>
       </div>

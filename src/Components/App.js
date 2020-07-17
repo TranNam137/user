@@ -16,8 +16,41 @@ class App extends Component {
     this.state = {
       hienThiForm : true,
       data : DataUser,
-      searchText: ''
+      searchText: '',
+      editUserStatus: false,
+      userEditObject : {}
     }
+  }
+
+  changeEditUserStatus = () =>{
+    this.setState({
+      editUserStatus : !this.state.editUserStatus
+    })
+  }
+
+  deleUser = (idUser) =>{
+
+    var tempData = this.state.data.filter(item => item.id !== idUser)
+    this.setState({
+      data:tempData
+    })
+    
+  }
+
+  getUserEditInfoApp = (info) =>{
+    this.state.data.forEach((value,key) => {
+      if(value.id === info.id){
+        value.name = info.name;
+        value.tel = info.tel;
+        value.premission = info.premission;
+      }
+    })
+  }
+
+  editUser = (user) => {
+    this.setState({
+      userEditobject : user
+    })
   }
 
   getNewUserData = (name, tel, premission) => {
@@ -33,7 +66,6 @@ class App extends Component {
       data: items
     });
 
-    console.log("ket noi ok");
     console.log(this.state.data);
     
   }
@@ -57,7 +89,6 @@ class App extends Component {
         ketqua.push(item);
       }
     })
-    //console.log(ketqua);
     
 
     return (
@@ -67,9 +98,17 @@ class App extends Component {
         <div className="container">
           <div className='row'>
             <Search 
+            getUserEditInfoApp = {(info) => this.getUserEditInfoApp(info)}
+            userEditobject = {this.state.userEditobject}
             checkConnectProps = {(dl) => this.getTextSearch(dl)}
-            ketnoi = {() => this.doiTrangThai()} hienThiForm = { this.state.hienThiForm}/>
-            <Tabledata DataUser = { ketqua} />
+            ketnoi = {() => this.doiTrangThai()} hienThiForm = { this.state.hienThiForm}
+            editUserStatus = { this.state.editUserStatus}
+            changeEditUserStatus = {() => this.changeEditUserStatus()}
+            />
+            <Tabledata
+            deleUser = {(idUser) => {this.deleUser(idUser)}}
+            changeEditUserStatus = {() => this.changeEditUserStatus()}
+            editFun = {(user) => this.editUser(user)} DataUser = { ketqua} />
             <AddUser add = {(name, tel, premission) => this.getNewUserData(name, tel, premission)} hienThiForm = { this.state.hienThiForm}/>
           </div>
         </div>

@@ -11,7 +11,17 @@ class TableDataRow extends Component {
         }
         else {return "Nomal";}
     }
+    editClick = () =>{
+        this.props.editFunClick();
+        this.props.changeEditUserStatus();
+    }
+
+    deleteButtonClick = (idUser) =>{
+        this.props.deleteButtonClick(idUser)
+    }
+
     render() {
+        
         return (
             <tr>
                 <td>{this.props.stt}</td>
@@ -20,8 +30,8 @@ class TableDataRow extends Component {
                 <td>{ this.premissionShow() }</td>
                 <td>
                     <div className="btn-group">
-                    <button className="btn btn-warning"><i className="fa fa-edit" /> Sửa</button>
-                    <button className="btn btn-danger">Xóa</button>
+                    <button className="btn btn-warning" onClick = {() => this.editClick()}><i className="fa fa-edit" /> Sửa</button>
+                    <button className="btn btn-danger" onClick = {(idUser) => this.deleteButtonClick(this.props.id)}>Xóa</button>
                     </div> 
                 </td>
             </tr>
